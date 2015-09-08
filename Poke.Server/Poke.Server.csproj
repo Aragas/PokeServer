@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D913029-2139-4897-8013-83EB8C8ECC78}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Poke.Server</RootNamespace>
+    <AssemblyName>Poke.Server</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Ability.cs" />
+    <Compile Include="Attack.cs" />
+    <Compile Include="EggType.cs" />
+    <Compile Include="IAttack.cs" />
+    <Compile Include="IO\BouncyCastleAesStream.cs" />
+    <Compile Include="IO\PlayerStream.cs" />
+    <Compile Include="IO\PokeDataReader.cs" />
+    <Compile Include="Packets\ClientResponse.cs" />
+    <Compile Include="Packets\Client\Joined\B0_BattleCreatePacket.cs" />
+    <Compile Include="Packets\Client\Joined\B1_BattleAttackPacket.cs" />
+    <Compile Include="Packets\Client\Joined\B2_BattleUseItemPacket.cs" />
+    <Compile Include="Packets\Client\Joined\B3_BattleSwitchPokemonPacket.cs" />
+    <Compile Include="Packets\Client\Joined\B4_BattleFleePacket.cs" />
+    <Compile Include="Packets\Client\Joined\P1_KeepAlivePacket.cs" />
+    <Compile Include="Packets\Client\Joined\P2_ChatMessagePacket.cs" />
+    <Compile Include="Packets\Client\Joined\P99_DisconnectPacket.cs" />
+    <Compile Include="Packets\Client\Joined\P0_JoinGamePacket.cs" />
+    <Compile Include="Packets\Client\Joining\J0_LoginStartPacket.cs" />
+    <Compile Include="Packets\HandshakePacket.cs" />
+    <Compile Include="Packets\Server\Joined\B0_BattleCreateStatusPacket.cs" />
+    <Compile Include="Packets\Server\Joined\B1_BattleNotFoundPacket.cs" />
+    <Compile Include="Packets\Server\Joined\B2_BattleEnteringBattlePacket.cs" />
+    <Compile Include="Packets\Server\Joined\B3_BattleStatusPacket.cs" />
+    <Compile Include="Packets\Server\Joined\B4_BattleYourTurnPacket.cs" />
+    <Compile Include="Packets\Server\Joined\B5_BattleEndPacket.cs" />
+    <Compile Include="Packets\Server\Joined\P1_ChatMessagePacket.cs" />
+    <Compile Include="Packets\Server\Joined\P0_KeepAlivePacket.cs" />
+    <Compile Include="Packets\Server\Joined\P99_DisconnectPacket.cs" />
+    <Compile Include="Packets\Server\Joining\J0_EncryptionRequestPacket.cs" />
+    <Compile Include="Packets\Server\Joining\J2_LoginDisconnectPacket.cs" />
+    <Compile Include="Packets\Server\Joining\J1_LoginSuccessPacket.cs" />
+    <Compile Include="Packets\PacketsEnum.cs" />
+    <Compile Include="Packets\ServerResponse.cs" />
+    <Compile Include="Pokemon.cs" />
+    <Compile Include="PokemonType.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="crypto, Version=1.8.5689.25754, Culture=neutral, PublicKeyToken=c23c2840b3912535, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.0-rc2\lib\portable-net45+win8+wpa81+MonoTouch10+MonoAndroid10+xamarinmac20+xamarinios10\crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Poke.Core\Poke.Core.csproj">
+      <Project>{25901ddd-183a-4163-b257-bd02c378185e}</Project>
+      <Name>Poke.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,4 +1,5 @@
-﻿using PokeServer.Interfaces;
+﻿using Poke.Core.Data;
+using Poke.Core.Interfaces;
 
 namespace PokeServer.Packets.Client.Joined
 {
@@ -7,15 +8,13 @@ namespace PokeServer.Packets.Client.Joined
         public byte ID { get { return 0x00; } }
 
         public int BattleID;
-        public OpponentBattle Switcher;
-        public PokemonBattle Pokemon;
+        public TrainerBattleMeta Switcher;
         public PokemonToSwitch SwitchPokemon;
 
         public IPacket ReadPacket(IProtocolDataReader reader)
         {
             BattleID = reader.ReadInt();
-            Switcher = (OpponentBattle) reader.ReadByte();
-            Pokemon = (PokemonBattle) reader.ReadByte();
+            Switcher = TrainerBattleMeta.FromReader(reader);
             SwitchPokemon = (PokemonToSwitch) reader.ReadByte();
 
             return this;
@@ -25,8 +24,7 @@ namespace PokeServer.Packets.Client.Joined
         {
             stream.WriteVarInt(ID);
             stream.WriteInt(BattleID);
-            stream.WriteByte((byte) Switcher);
-            stream.WriteByte((byte) Pokemon);
+            Switcher.ToStreamByte(stream);
             stream.WriteByte((byte) SwitchPokemon);
             stream.Purge();
 

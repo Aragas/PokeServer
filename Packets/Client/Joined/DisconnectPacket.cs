@@ -1,4 +1,4 @@
-﻿using PokeServer.Interfaces;
+﻿using Poke.Core.Interfaces;
 
 namespace PokeServer.Packets.Client.Joined
 {

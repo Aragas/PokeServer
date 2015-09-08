@@ -1,8 +1,8 @@
 ﻿using System;
 using Org.BouncyCastle.Math;
-using PokeServer.Data;
+using Poke.Core.Data;
 
-namespace PokeServer.Interfaces
+namespace Poke.Core.Interfaces
 {
     /// <summary>
     /// Object that reads data from IPacket.

@@ -2,8 +2,8 @@
 using System.IO;
 using System.Text;
 using Org.BouncyCastle.Math;
-using PokeServer.Data;
-using PokeServer.Interfaces;
+using Poke.Core.Data;
+using Poke.Core.Interfaces;
 using PokeServer.Packets;
 
 namespace PokeServer.IO

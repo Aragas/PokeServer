@@ -1,4 +1,4 @@
-﻿namespace PokeServer.Interfaces
+﻿namespace Poke.Core.Interfaces
 {
     public interface IProtocolStreamExtended : IProtocolStream
     {

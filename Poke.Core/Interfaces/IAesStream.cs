@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PokeServer.Interfaces
+namespace Poke.Core.Interfaces
 {
     /// <summary>
     /// Object that implements AES.

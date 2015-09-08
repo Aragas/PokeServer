@@ -1,6 +1,6 @@
 using System;
 
-namespace PokeServer.Interfaces
+namespace Poke.Core.Interfaces
 {
     public interface IPacket
     {

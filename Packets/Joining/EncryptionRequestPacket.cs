@@ -1,5 +1,5 @@
 ﻿using System.Security.Cryptography;
-using PokeServer.Interfaces;
+using Poke.Core.Interfaces;
 
 namespace PokeServer.Packets.Joining
 {

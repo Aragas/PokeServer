@@ -1,4 +1,4 @@
-﻿namespace PokeServer.Data
+﻿namespace Poke.Core.Data
 {
     public class VarInt
     {

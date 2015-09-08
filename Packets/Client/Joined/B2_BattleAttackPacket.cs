@@ -1,4 +1,5 @@
-using PokeServer.Interfaces;
+using Poke.Core.Data;
+using Poke.Core.Interfaces;
 
 namespace PokeServer.Packets.Client.Joined
 {
@@ -7,19 +8,15 @@ namespace PokeServer.Packets.Client.Joined
         public byte ID { get { return 0x00; } }
 
         public int BattleID;
-        public OpponentBattle OpponentAttacker;  // 5 bits - opponents, 3 - pokemon
-        public OpponentBattle OpponentDefender;
-        public PokemonBattle PokemonAttacker;
-        public PokemonBattle PokemonDefender;
+        public TrainerBattleMeta Attacker;  // 3 bits - opponents, 3 - pet
+        public TrainerBattleMeta Defender;  // 3 bits - opponents, 3 - pet
         public MoveBattle Move;
 
         public IPacket ReadPacket(IProtocolDataReader reader)
         {
             BattleID = reader.ReadInt();
-            OpponentAttacker = (OpponentBattle) reader.ReadByte();
-            OpponentDefender = (OpponentBattle) reader.ReadByte();
-            PokemonAttacker = (PokemonBattle) reader.ReadByte();
-            PokemonDefender = (PokemonBattle) reader.ReadByte();
+            Attacker = TrainerBattleMeta.FromReader(reader);
+            Defender = TrainerBattleMeta.FromReader(reader);
             Move = (MoveBattle) reader.ReadShort();
 
             return this;
@@ -29,10 +26,8 @@ namespace PokeServer.Packets.Client.Joined
         {
             stream.WriteVarInt(ID);
             stream.WriteInt(BattleID);
-            stream.WriteByte((byte) OpponentAttacker);
-            stream.WriteByte((byte) OpponentDefender);
-            stream.WriteByte((byte) PokemonAttacker);
-            stream.WriteByte((byte) PokemonDefender);
+            Attacker.ToStreamByte(stream);
+            Defender.ToStreamByte(stream);
             stream.WriteShort((short) Move);
             stream.Purge();
 

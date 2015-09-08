@@ -4,7 +4,7 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Modes;
 using Org.BouncyCastle.Crypto.Parameters;
-using PokeServer.Interfaces;
+using Poke.Core.Interfaces;
 
 namespace PokeServer.IO
 {
